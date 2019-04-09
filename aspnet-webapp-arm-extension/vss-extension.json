@@ -1,0 +1,59 @@
+{
+  "manifestVersion": 1.0,
+  "extensionId": "vss-arm-pipeline-templates",
+  "name": "ARM pipeline template for creating project with bootstrapped pipeline to deploy Asp.net application to Azure App service",
+  "publisher": "pedev",
+  "version": "0.1.0",
+  "description": "ARM pipeline template for creating project with bootstrapped pipeline to deploy Asp.net application to Azure App service",
+  "categories": [
+    "Azure Pipelines"
+  ],
+  "targets": [
+    {
+      "id": "Microsoft.VisualStudio.Services"
+    }
+  ],
+  "files": [
+    {
+      "path": "Files",
+      "addressable": true
+    }
+  ],
+  "contributions": [
+    {
+      "id": "aspnet-windowswebapp",
+      "type": "ms.vss-continuous-delivery.pipeline-template-type",
+      "targets": [
+          "ms.vss-continuous-delivery.pipeline-templates"
+      ],
+      "properties": {
+          "description": "i18n:Template for configuring CI/CD pipeline for ASP.Net app on Azure windows app service",
+          "attributes": {
+              "codeRepositoryType": "Sample"
+          },
+          "parameters": {
+            "imports": [
+              "Files/Parameters/ArmEndpointParameters.json",
+              "Files/Parameters/WindowsAppService.json"
+            ]
+          },
+          "configuration": {
+              "imports": [
+                  "Files/Configuration/ArmEndpointConfiguration.json",
+                  "Files/Configuration/WindowsWebAppReleaseConfiguration.json"
+              ],
+              "source": {
+                  "repository": {
+                    "id": "https://github.com/bishal-pdMSFT/project-aspnet-windowswebapp",
+                    "defaultBranch": "master"
+                }
+              },
+              "buildDefinition": {
+                  "queue": "HostedVS2017",
+                  "templateFile": "Files/BuildDefinitionTemplates/AspNetBuild.json"
+              }
+          }
+      }
+    }
+  ]
+}

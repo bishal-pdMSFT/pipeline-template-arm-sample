@@ -1,0 +1,32 @@
+{
+  "inputs": [
+    {
+      "id": "resourceGroup",
+      "description": "Name of resource group which should contain web app.",
+      "type": "string"
+    },
+    {
+      "id": "webAppName",
+      "description": "Name of web app to be created",
+      "type": "string"
+    },
+    {
+      "id": "location",
+      "description": "Location of the app service.",
+      "type": "string"
+    },
+    {
+      "id": "appServicePlan",
+      "description": "Details of cost and compute resource associated with the web app",
+      "type": "string"
+    },
+    {
+      "id": "appInsightLocation",
+      "description": "Application insights location.",
+      "type": "string",
+      "possibleValues": [
+        
+      ]
+    }
+  ]
+}

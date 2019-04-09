@@ -1,0 +1,14 @@
+﻿{
+  "inputs": [
+    {
+      "id": "azureAuth",
+      "description": "Authorization for Azure ARM endpoints.",
+      "type": "string"
+    },
+    {
+      "id": "subscriptionId",
+      "description": "Id of subscription where azure resources will be created.",
+      "type": "string"
+    }
+  ]
+}

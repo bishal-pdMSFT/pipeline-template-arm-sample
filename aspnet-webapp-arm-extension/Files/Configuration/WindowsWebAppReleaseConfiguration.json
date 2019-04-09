@@ -1,0 +1,41 @@
+{
+    "releaseDefinition": {
+        "environments": [
+            {
+                "name": "dev",
+                "deployedResourceIds": [
+                    "/subscriptions/{{{inputs.subscriptionId}}}/resourceGroups/{{{inputs.resourceGroup}}}/providers/Microsoft.Web/sites/{{{inputs.webAppName}}}"
+                ],
+                "templateFile": "Files/ReleaseDefinitionTemplates/deployAzureAppServiceWithVsTest.json",
+                "phaseInputs": [
+                    {
+                        "queue": "HostedVS2017",
+                        "taskInputs": [
+                            {
+                                "__TaskId__": "94a74903-f93f-4075-884f-dc11f34058b4",
+                                "ConnectedServiceName": "{{{assets.ARMEndpoint}}}",
+                                "ResourceGroupName": "{{{inputs.resourceGroup}}}",
+                                "location": "{{{inputs.location}}}",
+                                "csmFile": "$(System.DefaultWorkingDirectory)/**/windows-webapp-template.json",
+                                "overrideParameters": "-webAppName {{{inputs.webAppName}}} -hostingPlanName {{{inputs.webAppName}}}-plan -appInsightsLocation \"{{{inputs.appInsightLocation}}}\" -sku \"{{{inputs.appServicePlan}}}\""
+                            },
+                            {
+                                "__TaskId__": "497d490f-eea7-4f2b-ab94-48d9c1acdcb1",
+                                "ConnectedServiceName": "{{{assets.ARMEndpoint}}}",
+                                "WebAppName": "{{{inputs.webAppName}}}",
+                                "ResourceGroupName": "{{{inputs.resourceGroup}}}",
+                                "Package": "$(System.DefaultWorkingDirectory)\\**\\*.zip"
+                            },
+                            {
+                                "__TaskId__": "2c65196a-54fd-4a02-9be8-d9d1837b7111"
+                            },
+                            {
+                                "__TaskId__": "ef087383-ee5e-42c7-9a53-ab56c98420f9"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+}
